@@ -35,6 +35,8 @@
                 <a href="/posts" x-show="expandFilter" x-transition x-cloak
                     class="py-2.5 px-5 mr-2 my-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Reset
                     Filters</a>
+
+
                 <div class="filters flex gap-4" x-show="expandFilter" x-collapse x-cloak>
                     <div>
                         <label for="category"
@@ -58,7 +60,20 @@
                             class="block w-full p-2.5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Type Author Name">
                     </div>
+                    <div>
+                        <label for="order"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Order</label>
+                        <select id="order" name="order" @change="$refs.form.submit()"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option disabled selected>Order From</option>
+                            <option value="latest" {{ request('order') == 'latest' ? 'selected' : '' }}>Latest</option>
+                            <option value="oldest" {{ request('order') == 'oldest' ? 'selected' : '' }}>Oldest</option>
+                            <option value="a-z" {{ request('order') == 'a-z' ? 'selected' : '' }}>A-Z</option>
+                            <option value="z-a" {{ request('order') == 'z-a' ? 'selected' : '' }}>Z-A</option>
+                        </select>
+                    </div>
                 </div>
+
 
             </form>
 
@@ -78,6 +93,11 @@
 
 
             </div>
+
+            <div>
+                {{ $posts->links() }}
+            </div>
+
         </div>
     </section>
 

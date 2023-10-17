@@ -25,7 +25,11 @@
                 @endforelse
 
 
+
             </div>
+
+            <a href="/posts" class="text-gray-500 underline">More Posts >></a>
+
         </div>
     </section>
 
